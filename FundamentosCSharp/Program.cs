@@ -208,11 +208,11 @@ namespace FundamentosCSharp
             //Console.ReadKey();
 
             //15
-            MetodoSemRetorno();
+            //MetodoSemRetorno(); //Control K+C = comenta //Control K+U = descomenta
 
         }
 
-        private static void MetodoSemRetorno()
+        /*private static void MetodoSemRetorno()
         {
             Console.WriteLine("Ok, vamos lá!!!");
             Console.ReadKey();
@@ -223,6 +223,12 @@ namespace FundamentosCSharp
             dog.idade = 12;
             dog.latir("alemão");
 
+        }*/
+
+
+        class OutraClasse
+        {
+            string atributo;
         }
     }
 
