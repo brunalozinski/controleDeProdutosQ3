@@ -1,0 +1,65 @@
+﻿@model List<ProdutoModel>
+@{
+    ViewData["Title"] = "Produtos";
+    var imgSrc = "https://f.i.uol.com.br/fotografia/2023/08/09/169161566264d401aeb2724_1691615662_3x2_md.jpg";
+}
+
+<div class="text-center">
+    <div>
+        <a class="btn btn-sucess" role="button" asp-controller="Produto" asp-action="Criar">
+            Adicionar novo produto
+         </a>
+        <h2>Listar Produtos</h2>
+        @ViewBag.produtos
+    </div>
+    <table class="table caption-top">
+        <caption>Lista de Produtos</caption>
+        <thead>
+            <tr>
+                <th scope="col">Foto</th>
+                <th scope="col">Id</th>
+                <th scope="col">Código de Barras</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Data de validade</th>
+                <th scope="col">Data de registro</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor Unitário</th>
+                <th scope="col">Situação</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Any())
+            {
+                foreach (ProdutoModel produto in Model)
+                {
+                    <tr class="align-baseline">
+                        @if(produto.Foto != null)
+                        {
+                            var base64 = Convert.ToBase64String(@produto.Foto);
+                            imgSrc = $"data:image/gif;base64, {base64}";
+                        }
+
+                        <td scope="col"><img src='@imgSrc' width="50" height="50"></td>
+                        <th>@produto.Id</th>
+                        <td>@produto.CodigoDeBarras</td>
+                        <td>@produto.Descricao</td>
+                        <td>@produto.DataDeValidade.ToString("dd/MM/yyyy")</td>
+                        <td>@produto.DataDeRegistro.ToString("dd/MM/yyyy")</td>
+                        <td>@produto.Quantidade</td>
+                        <td>@produto.Valor.ToString("C2")</td>
+                        <td>@produto.Ativo</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary mx-2" asp-controller="Produto" asp-action="Editar" asp-route-id="@produto.Id">Editar</a>
+                                <a role="button" class="btn btn-warning mx-2">Desativar</a>
+                                <a role="button" class="btn btn-danger mx-2" asp-controller="Produto" asp-action="ApagarConfirmacao">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

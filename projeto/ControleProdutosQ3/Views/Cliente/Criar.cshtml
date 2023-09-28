@@ -1,0 +1,31 @@
+﻿@model ClienteModel
+@{
+    ViewData["title"] = "Cadastro de Clientes";
+}
+
+<div>
+    <form asp-controller="Cliente" asp-action="Criar" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" id="nome"
+                    placeholder="Entre com o nome do cliente"/>
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="text" asp-for="Telefone" class="form-control" id="telefone"
+                   placeholder="Entre com o telefone do cliente" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>        
+        <div>
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" asp-for="Cep" class="form-control" id="cep"
+                   placeholder="Entre com o CEP do cliente" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+        </div>
+    </form>
+</div>
